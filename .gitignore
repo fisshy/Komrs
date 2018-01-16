@@ -6,6 +6,8 @@
 # User-specific files
 *.suo
 *.user
+!Komrs.User/
+!Komrs.User/*
 *.userosscache
 *.sln.docstates
 
