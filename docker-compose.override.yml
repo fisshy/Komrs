@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  komrs.user.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=${KOMRS_USERDB}
+      - EventBusConnection=${KOMRS_SERVICE_BUS:-rabbitmq}
+      - EventBusUserName=${KOMRS_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${KOMRS_SERVICE_BUS_PASSWORD}
+    ports:
+      - "5100:80"
+  rabbitmq:
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+

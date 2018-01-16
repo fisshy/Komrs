@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  komrs.user.api:
+    image: komrs.user.api
+    build:
+      context: ./Komrs.User.API
+      dockerfile: Dockerfile
+    depends_on:
+      - rabbitmq
+  rabbitmq:
+    image: rabbitmq:3-management
