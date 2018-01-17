@@ -36,7 +36,6 @@ namespace Komrs.User.API
 
             services.Configure<Settings>(Configuration);
             
-            
             services.AddDbContext<UserDbContext>(options =>
                 options.UseSqlServer(connectionString,
                                         sqlServerOptionsAction: sqlOptions =>

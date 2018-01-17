@@ -10,3 +10,8 @@ services:
       - rabbitmq
   rabbitmq:
     image: rabbitmq:3-management
+  komrs.product.api:
+    image: komrs.product.api
+    build:
+      context: ./Komrs.Product.API
+      dockerfile: Dockerfile
