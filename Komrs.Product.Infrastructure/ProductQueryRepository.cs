@@ -6,6 +6,7 @@ using Komrs.Product.Models;
 using Dapper;
 using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
+using Database;
 
 namespace Komrs.Product.Infrastructure
 {
@@ -14,9 +15,8 @@ namespace Komrs.Product.Infrastructure
         private readonly string connectionString;
         private readonly ILogger logger;
 
-        public ProductQueryRepository(string connectionString, ILogger logger) : base(connectionString)
+        public ProductQueryRepository(string connectionString, ILogger<ProductQueryRepository> logger) : base(connectionString, logger)
         {
-            this.logger = logger;
         }
 
         public async Task<IEnumerable<Category>> GetAllCategories()

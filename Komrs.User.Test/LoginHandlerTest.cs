@@ -11,6 +11,7 @@ using Xunit;
 using Komrs.User;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.Extensions.Options;
 
 namespace Komrs.User.Test
 {
@@ -19,7 +20,7 @@ namespace Komrs.User.Test
     {
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signinManager;
-        private Settings _settings;
+        private IOptions<Settings> _settings;
 
 
         public LoginHandlerTest()
@@ -47,12 +48,12 @@ namespace Komrs.User.Test
             _userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             _signinManager = serviceProvider.GetRequiredService<SignInManager<ApplicationUser>>();
 
-            _settings = new Settings
+            _settings = Options.Create(new Settings
             {
                 JwtExpireDays = 30,
                 JwtIssuer = "joachim",
                 JwtKey = "ABC%%%111999__----abc90+!?"
-            };
+            });
         }
 
         public void Dispose()

@@ -27,15 +27,6 @@ namespace Komrs.Product.API
         {
             var connectionString = Configuration.GetValue<string>("ConnectionString");
 
-            services.AddDbContext<ProductDbContext>(options =>
-                options.UseSqlServer(connectionString,
-                                        sqlServerOptionsAction: sqlOptions =>
-                                        {
-                                            sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
-                                            sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
-                                        }));
-
-
             services.AddMvc();
         }
 

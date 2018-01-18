@@ -26,21 +26,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{3E34D2
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Komrs.Product.API", "Komrs.Product.API\Komrs.Product.API.csproj", "{17DA37BB-4B0E-4601-AB45-613EE3BC285B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Komrs.Product.API", "Komrs.Product.API\Komrs.Product.API.csproj", "{17DA37BB-4B0E-4601-AB45-613EE3BC285B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Komrs.Product", "Komrs.Product\Komrs.Product.csproj", "{444B569C-25D8-44A8-BADB-0C24CC43AB1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Komrs.Product", "Komrs.Product\Komrs.Product.csproj", "{444B569C-25D8-44A8-BADB-0C24CC43AB1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Komrs.Product.Test", "Komrs.Product.Test\Komrs.Product.Test.csproj", "{4B337A00-10B0-438A-ADE9-3C0811D632F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Komrs.Product.Test", "Komrs.Product.Test\Komrs.Product.Test.csproj", "{4B337A00-10B0-438A-ADE9-3C0811D632F0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User", "User", "{4493FAAF-C89E-49C6-8527-D48AC1478EF6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Product", "Product", "{E0AA9F92-C9CA-4890-9C80-43C3B8106558}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Komrs.Product.Application", "Komrs.Product.Application\Komrs.Product.Application.csproj", "{579EE11B-25BE-4460-9823-FC8FDE44B3B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Komrs.Product.Application", "Komrs.Product.Application\Komrs.Product.Application.csproj", "{579EE11B-25BE-4460-9823-FC8FDE44B3B4}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Komrs.Product.Database", "Komrs.Product.Database\Komrs.Product.Database.sqlproj", "{56720D09-3D58-4D8F-B6FC-22A882E734E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Komrs.Product.Infrastructure", "Komrs.Product.Infrastructure\Komrs.Product.Infrastructure.csproj", "{DBC94ED5-EE74-41BF-BAFE-A0CCD45F97BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Komrs.Product.Infrastructure", "Komrs.Product.Infrastructure\Komrs.Product.Infrastructure.csproj", "{DBC94ED5-EE74-41BF-BAFE-A0CCD45F97BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{F43A9808-28F6-4B34-B985-2190A061AD72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database.Test", "Database.Test\Database.Test.csproj", "{995C17C3-535C-4054-BC44-9DE9C7AA76AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -106,6 +110,14 @@ Global
 		{DBC94ED5-EE74-41BF-BAFE-A0CCD45F97BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBC94ED5-EE74-41BF-BAFE-A0CCD45F97BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBC94ED5-EE74-41BF-BAFE-A0CCD45F97BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F43A9808-28F6-4B34-B985-2190A061AD72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F43A9808-28F6-4B34-B985-2190A061AD72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F43A9808-28F6-4B34-B985-2190A061AD72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F43A9808-28F6-4B34-B985-2190A061AD72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{995C17C3-535C-4054-BC44-9DE9C7AA76AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{995C17C3-535C-4054-BC44-9DE9C7AA76AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{995C17C3-535C-4054-BC44-9DE9C7AA76AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{995C17C3-535C-4054-BC44-9DE9C7AA76AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -124,6 +136,8 @@ Global
 		{579EE11B-25BE-4460-9823-FC8FDE44B3B4} = {E0AA9F92-C9CA-4890-9C80-43C3B8106558}
 		{56720D09-3D58-4D8F-B6FC-22A882E734E3} = {E0AA9F92-C9CA-4890-9C80-43C3B8106558}
 		{DBC94ED5-EE74-41BF-BAFE-A0CCD45F97BC} = {E0AA9F92-C9CA-4890-9C80-43C3B8106558}
+		{F43A9808-28F6-4B34-B985-2190A061AD72} = {D025B111-002E-44E7-8398-774FE7FE4EA4}
+		{995C17C3-535C-4054-BC44-9DE9C7AA76AC} = {D025B111-002E-44E7-8398-774FE7FE4EA4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {144A394A-932A-4F41-AACE-6DC42C218A3D}
