@@ -73,6 +73,8 @@
     <Build Include="View\ProductStock.sql" />
     <Build Include="Table Views\GetAllProductListItems.sql" />
     <Build Include="Table Views\GetFilteredProductListItems.sql" />
+    <Build Include="Tables\Meta.sql" />
+    <Build Include="Tables\ProductMeta.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Komrs.Product.Database.publish.xml" />

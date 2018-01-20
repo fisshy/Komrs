@@ -24,6 +24,7 @@ namespace Database
 
         public void Begin()
         {
+            Dispose();
             _con = new SqlConnection(_connectionString);
             _con.Open();
             _trans = _con.BeginTransaction();
@@ -37,7 +38,7 @@ namespace Database
                 {
                     throw new ArgumentException("Transaction is not started, call Begin() to start");
                 }
-
+                await _con.OpenAsync();
                 return await _con.ExecuteAsync(query, param);
             }
             catch (Exception e)

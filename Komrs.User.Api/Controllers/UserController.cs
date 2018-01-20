@@ -52,11 +52,11 @@ namespace Komrs.User.API.Controllers
         [Route("register")]
         [ProducesResponseType(typeof(LoginResult), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<object> Register([FromBody] RegisterModel model, CancellationToken cancellationToken)
+        public async Task<IActionResult> Register([FromBody] RegisterModel model, CancellationToken cancellationToken)
         {
             try
             {
-                return await _mediator.Send(new RegisterRequest(model.Email, model.Password, model.RepeatPassword), cancellationToken);
+                return Ok(await _mediator.Send(new RegisterRequest(model.Email, model.Password, model.RepeatPassword), cancellationToken));
             }
             catch(RegisterException ex)
             {

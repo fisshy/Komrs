@@ -8,16 +8,24 @@ services:
       - EventBusConnection=${KOMRS_SERVICE_BUS:-rabbitmq}
       - EventBusUserName=${KOMRS_SERVICE_BUS_USERNAME}
       - EventBusPassword=${KOMRS_SERVICE_BUS_PASSWORD}
+      - JwtKey=${KOMRS_JWTKEY:-4BCDaLpH4BET1!99199}
+      - JwtIssuer=${KOMRS_JWTIISSUER:-http://komrs}
     ports:
       - "5100:80"
+  
+  komrs.product.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=${KOMRS_PRODUCTDB}
+      - EventBusConnection=${KOMRS_SERVICE_BUS:-rabbitmq}
+      - EventBusUserName=${KOMRS_SERVICE_BUS_USERNAME}
+      - EventBusPassword=${KOMRS_SERVICE_BUS_PASSWORD}
+      - JwtKey=${KOMRS_JWTKEY:-4BCDaLpH4BET1!99199}
+      - JwtIssuer=${KOMRS_JWTIISSUER:-http://komrs}
+    ports:
+      - "5101:80"
+
   rabbitmq:
     ports:
       - "15672:15672"
       - "5672:5672"
-
-
-  komrs.product.api:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"

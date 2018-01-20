@@ -22,8 +22,9 @@ namespace Database
         {
             try
             {
-                using (var con = new SqlConnection())
+                using (var con = new SqlConnection(_connectionString))
                 {
+                    await con.OpenAsync();
                     return await con.QueryAsync<T>(query, param);
                 }
             }
@@ -38,8 +39,9 @@ namespace Database
         {
             try
             {
-                using (var con = new SqlConnection())
+                using (var con = new SqlConnection(_connectionString))
                 {
+                    await con.OpenAsync();
                     return await con.ExecuteAsync(query, param);
                 }
             }

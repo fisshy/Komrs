@@ -7,7 +7,7 @@ namespace Komrs.Product
 {
     public interface IProductRepository
     {
-        Task CreateProduct(Models.Product product);
+        Task CreateProduct(Models.CreateProduct product);
         Task UpdateProduct(Models.Product product);
         Task UpdateStock(Models.Stock stock);
     }

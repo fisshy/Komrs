@@ -91,6 +91,7 @@ namespace Komrs.User.API
                     .AllowCredentials());
             });
 
+
             ConfigureRabbitMQ(services);
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
