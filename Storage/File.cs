@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Storage.Azure
+namespace Storage
 {
     public class File : IFile
     {

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
+using System.Threading;
 
 namespace Storage.Azure
 {
@@ -16,7 +17,7 @@ namespace Storage.Azure
             _storageConnectionString = !string.IsNullOrWhiteSpace(storageConnectionString) ? storageConnectionString : throw new ArgumentNullException();
         }
 
-        public Task<string> UploadFile(IFile file)
+        public Task<string> UploadFile(IFile file, CancellationToken cancellationToken)
         {
             if (file == null)
             {
@@ -26,17 +27,17 @@ namespace Storage.Azure
             return Task.FromResult(string.Empty);
         }
 
-        public async Task<IEnumerable<string>> UploadFiles(IEnumerable<IFile> files)
+        public async Task<IEnumerable<string>> UploadFiles(IEnumerable<IFile> files, CancellationToken cancellationToken)
         {
-            if(files == null)
+            if (files == null)
             {
                 throw new ArgumentNullException();
             }
-         
-            return await Task.WhenAll(files.Select(f => UploadFile(f)));
+
+            return await Task.WhenAll(files.Select(f => UploadFile(f, cancellationToken)));
         }
 
-        public async Task<string> UploadImage(IFile file)
+        public async Task<string> UploadImage(IFile file, CancellationToken cancellationToken)
         {
             if (file == null)
             {
@@ -55,22 +56,19 @@ namespace Storage.Azure
 
             CloudBlockBlob blob = container.GetBlockBlobReference(file.FileName);
 
-            using (var fileStream = System.IO.File.OpenRead(@"path\myfile"))
-            {
-               await blob.UploadFromStreamAsync(file.Stream);
-            }
+            await blob.UploadFromStreamAsync(file.Stream);
 
             return blob.Uri.AbsolutePath;
         }
 
-        public async Task<IEnumerable<string>> UploadImages(IEnumerable<IFile> files)
+        public async Task<IEnumerable<string>> UploadImages(IEnumerable<IFile> files, CancellationToken cancellationToken)
         {
             if (files == null)
             {
                 throw new ArgumentNullException();
             }
 
-            return await Task.WhenAll(files.Select(f => UploadImage(f)));
+            return await Task.WhenAll(files.Select(f => UploadImage(f, cancellationToken)));
         }
     }
 }

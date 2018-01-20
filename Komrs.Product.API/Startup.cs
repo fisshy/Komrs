@@ -23,6 +23,7 @@ using Microsoft.Extensions.HealthChecks;
 using Komrs.Product.Infrastructure;
 using Storage;
 using Storage.Azure;
+using Swagger;
 
 namespace Komrs.Product.API
 {
@@ -81,6 +82,8 @@ namespace Komrs.Product.API
                     In = "header",
                     Type = "apiKey"
                 });
+
+               // c.OperationFilter<FormFileOperationFilter>();
 
             });
 

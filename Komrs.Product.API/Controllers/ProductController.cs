@@ -51,11 +51,11 @@ namespace Komrs.Product.API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("")]
         [ProducesResponseType(typeof(ProductModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> CreateProduct([FromBody]CreateProductModel p, List<IFormFile> files, CancellationToken cancellationToken)
+        public async Task<IActionResult> CreateProduct([FromBody]CreateProductModel p, [FromForm]List<IFormFile> files, CancellationToken cancellationToken)
         {
             try
             {
@@ -80,7 +80,10 @@ namespace Komrs.Product.API.Controllers
                     Images = files
                 };
 
-                return base.Ok(await _mediator.Send(request, cancellationToken));
+                var productId = await _mediator.Send(request, cancellationToken);
+
+
+                return Ok();
             }
             catch (ProductNotCreatedException ex)
             {

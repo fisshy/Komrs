@@ -52,6 +52,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage.Azure", "Storage.Az
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage.Azure.Test", "Storage.Azure.Test\Storage.Azure.Test.csproj", "{6B073BD3-FDE9-4C16-B643-CEAF4AE07EBB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swagger", "Swagger\Swagger.csproj", "{B9AEAB53-9261-4218-BD0C-D08BBCE5F554}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -136,6 +138,10 @@ Global
 		{6B073BD3-FDE9-4C16-B643-CEAF4AE07EBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B073BD3-FDE9-4C16-B643-CEAF4AE07EBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B073BD3-FDE9-4C16-B643-CEAF4AE07EBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9AEAB53-9261-4218-BD0C-D08BBCE5F554}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9AEAB53-9261-4218-BD0C-D08BBCE5F554}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9AEAB53-9261-4218-BD0C-D08BBCE5F554}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9AEAB53-9261-4218-BD0C-D08BBCE5F554}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -159,6 +165,7 @@ Global
 		{550688F9-CD95-42E2-AD5D-83E2793A857F} = {D025B111-002E-44E7-8398-774FE7FE4EA4}
 		{7BB0C1AB-9163-4956-9160-01C64D32F0FC} = {D025B111-002E-44E7-8398-774FE7FE4EA4}
 		{6B073BD3-FDE9-4C16-B643-CEAF4AE07EBB} = {D025B111-002E-44E7-8398-774FE7FE4EA4}
+		{B9AEAB53-9261-4218-BD0C-D08BBCE5F554} = {D025B111-002E-44E7-8398-774FE7FE4EA4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {144A394A-932A-4F41-AACE-6DC42C218A3D}

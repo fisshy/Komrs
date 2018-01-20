@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -31,12 +32,12 @@ namespace Storage.Azure.Test
             var storage = new AzureStorage("connection");
             await Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await storage.UploadFile(null);
+                await storage.UploadFile(null, CancellationToken.None);
             });
 
             await Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await storage.UploadImage(null);
+                await storage.UploadImage(null, CancellationToken.None);
             });
         }
 
@@ -47,12 +48,12 @@ namespace Storage.Azure.Test
 
             await Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await storage.UploadFiles(null);
+                await storage.UploadFiles(null, CancellationToken.None);
             });
 
             await Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await storage.UploadImages(null);
+                await storage.UploadImages(null, CancellationToken.None);
             });
         }
     }

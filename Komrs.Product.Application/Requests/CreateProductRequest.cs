@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Komrs.Product.Application.Requests
 {
-    public class CreateProductRequest : CreateProductModel, IRequest<ProductModel>
+    public class CreateProductRequest : CreateProductModel, IRequest<int>
     {
         public IEnumerable<IFormFile> Images { get; set; }
     }
