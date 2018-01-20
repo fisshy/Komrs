@@ -22,6 +22,7 @@ services:
       - EventBusPassword=${KOMRS_SERVICE_BUS_PASSWORD}
       - JwtKey=${KOMRS_JWTKEY:-4BCDaLpH4BET1!99199}
       - JwtIssuer=${KOMRS_JWTIISSUER:-http://komrs}
+      - StorageConnectionString=${StorageConnectionString}
     ports:
       - "5101:80"
 

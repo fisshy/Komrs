@@ -12,7 +12,6 @@ using Microsoft.Extensions.Logging;
 using System.Threading;
 using Komrs.Product.Application.Requests;
 using Komrs.Product.Application.Exceptions;
-using Komrs.Product.API.Models;
 
 namespace Komrs.Product.API.Controllers
 {

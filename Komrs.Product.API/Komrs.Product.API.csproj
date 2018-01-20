@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Models\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -27,6 +28,7 @@
     <ProjectReference Include="..\EventBus.RabbitMQ\EventBus.RabbitMQ.csproj" />
     <ProjectReference Include="..\Komrs.Product.Application\Komrs.Product.Application.csproj" />
     <ProjectReference Include="..\Komrs.Product.Infrastructure\Komrs.Product.Infrastructure.csproj" />
+    <ProjectReference Include="..\Storage.Azure\Storage.Azure.csproj" />
   </ItemGroup>
 
 </Project>

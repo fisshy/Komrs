@@ -21,6 +21,8 @@ using MediatR;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.HealthChecks;
 using Komrs.Product.Infrastructure;
+using Storage;
+using Storage.Azure;
 
 namespace Komrs.Product.API
 {
@@ -100,10 +102,16 @@ namespace Komrs.Product.API
                 var logger = s.GetService<ILogger<ProductQueryRepository>>();
                 return new ProductQueryRepository(Configuration.GetValue<string>("ConnectionString"), logger);
             });
+
             services.AddSingleton<IProductRepository, ProductRepository>((s) =>
             {
                 var logger = s.GetService<ILogger<ProductRepository>>();
                 return new ProductRepository(Configuration.GetValue<string>("ConnectionString"), logger);
+            });
+
+            services.AddSingleton<IStorage, AzureStorage>((s) =>
+            {
+                return new AzureStorage(Configuration.GetValue<string>("StorageConnectionString"));
             });
 
             services.AddMvc();
