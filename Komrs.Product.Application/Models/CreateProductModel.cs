@@ -21,7 +21,7 @@ namespace Komrs.Product.Application.Models
         public decimal? Length { get; set; }
         public decimal? Weight { get; set; }
 
-        public int SupplierId { get; set; }
+        public Supplier Supplier { get; set; }
 
         public IEnumerable<int> Categories { get; set; }
         public IEnumerable<ProductTag> Tags { get; set; }

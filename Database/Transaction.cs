@@ -30,7 +30,7 @@ namespace Database
             _trans = _con.BeginTransaction();
         }
 
-        public async Task<int> Execute(string query, object param = null)
+        public async Task<IEnumerable<T>> Query<T>(string query, object param = null)
         {
             try
             {
@@ -38,8 +38,44 @@ namespace Database
                 {
                     throw new ArgumentException("Transaction is not started, call Begin() to start");
                 }
-                await _con.OpenAsync();
-                return await _con.ExecuteAsync(query, param);
+
+                return await _con.QueryAsync<T>(query, param, _trans);
+            }
+            catch (Exception e)
+            {
+                _logger.LogCritical(e, "Failed to Execute", query, param);
+                throw;
+            }
+        }
+
+        public async Task<T> QueryFirstAsync<T>(string query, object param = null)
+        {
+            try
+            {
+                if (_trans == null || _con == null)
+                {
+                    throw new ArgumentException("Transaction is not started, call Begin() to start");
+                }
+
+                return await _con.QueryFirstAsync<T>(query, param, _trans);
+            }
+            catch (Exception e)
+            {
+                _logger.LogCritical(e, "Failed to Execute", query, param);
+                throw;
+            }
+        }
+
+        public async Task<int> ExecuteAsync<T>(string query, object param = null)
+        {
+            try
+            {
+                if (_trans == null || _con == null)
+                {
+                    throw new ArgumentException("Transaction is not started, call Begin() to start");
+                }
+
+                return await _con.ExecuteAsync(query, param, _trans);
             }
             catch (Exception e)
             {
@@ -62,6 +98,8 @@ namespace Database
             {
                 _trans.Rollback();
             }
+
+            Dispose();
         }
 
         public void Dispose()

@@ -20,7 +20,9 @@ namespace Komrs.Product.Infrastructure
                 {
                     trans.Begin();
 
-                    var productId = await trans.Execute(
+                    var supplierId = product.Supplier.Id ?? await trans.QueryFirstAsync<int>("INSERT INTO dbo.Supplier(Name) VALUES (@Name) SELECT SCOPE_IDENTITY()", new { product.Supplier.Name });
+
+                    var productId = await trans.QueryFirstAsync<int>(
                         @"INSERT INTO dbo.Product(
                                 [SupplierId],
                                 [ArticleNumber],
@@ -48,7 +50,8 @@ namespace Komrs.Product.Infrastructure
                                 @Weight
                             ) SELECT SCOPE_IDENTITY();", new
                         {
-                            SupplierId = product.SupplierId,
+                            ArticleNumber = product.ArticleNumber,
+                            SupplierId = supplierId,
                             ActualStock = product.ActualStock,
                             Name = product.Name,
                             Description = product.Description,
@@ -63,7 +66,7 @@ namespace Komrs.Product.Infrastructure
 
                     foreach (var image in product.Images)
                     {
-                        await trans.Execute(
+                        await trans.QueryFirstAsync<int>(
                             @"INSERT INTO dbo.ProductImage (
                                     [ProductId]
                                     [Name]
@@ -86,16 +89,20 @@ namespace Komrs.Product.Infrastructure
 
                     foreach (var tag in product.Tags)
                     {
-                        var tagId = tag.Id ?? await trans.Execute("INSERT INTO dbo.Tag(Name) VALUES (@Name)", tag);
-                        await trans.Execute("INSERT INTO dbo.ProductTag(ProductId, TagId) VALUES (@ProductId, @TagId)",
+                        var tagId = tag.Id ??
+                            await trans.QueryFirstAsync<int>("INSERT INTO dbo.Tag(Name) VALUES (@Name) SELECT SCOPE_IDENTITY()", tag);
+
+                        await trans.ExecuteAsync<int>("INSERT INTO dbo.ProductTag(ProductId, TagId) VALUES (@ProductId, @TagId)",
                             new { ProductId = productId, TagId = tagId });
                     }
 
                     foreach (var meta in product.Meta)
                     {
-                        var metaId = meta.Id ?? await trans.Execute("INSERT INTO dbo.Meta(Name, Value) VALUES (@Name, @Value)", meta);
-                        await trans.Execute("INSERT INTO dbo.ProductMeta(ProductId, MetaId) VALUES (@ProductId, @MetaId)",
-                            new { MetaId = metaId, ProductId = productId });
+                        var metaId = meta.Id ??
+                            await trans.QueryFirstAsync<int>("INSERT INTO dbo.Meta(Name) VALUES (@Name) SELECT SCOPE_IDENTITY()", meta);
+
+                        await trans.ExecuteAsync<int>("INSERT INTO dbo.ProductMeta(ProductId, MetaId, Value) VALUES (@ProductId, @MetaId, @Value)",
+                            new { MetaId = metaId, ProductId = productId, Value = meta.Value });
                     }
 
                     trans.Commit();

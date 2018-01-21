@@ -83,8 +83,6 @@ namespace Komrs.Product.API
                     Type = "apiKey"
                 });
 
-               // c.OperationFilter<FormFileOperationFilter>();
-
             });
 
             services.AddCors(options =>

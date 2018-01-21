@@ -61,7 +61,7 @@ namespace Komrs.Product.Application.Handlers
                 Categories = request.Categories,
                 Height = request.Height,
                 Length = request.Length,
-                SupplierId = request.SupplierId,
+                Supplier = request.Supplier,
                 Tags = request.Tags,
                 Weight = request.Weight,
                 Width = request.Width,

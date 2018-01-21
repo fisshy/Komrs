@@ -73,7 +73,7 @@ namespace Komrs.Product.API.Controllers
                     Categories = p.Categories,
                     Height = p.Height,
                     Length = p.Length,
-                    SupplierId = p.SupplierId,
+                    Supplier = p.Supplier,
                     Tags = p.Tags,
                     Weight = p.Weight,
                     Width = p.Width,
