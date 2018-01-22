@@ -1,4 +1,7 @@
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using System;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Database.Test
@@ -7,22 +10,25 @@ namespace Database.Test
     {
 
         [Fact]
-        public void ShouldThrowIfConnectionNotProvided()
+        public async Task ShouldThrowIfConnectionNotProvided()
         {
-            Assert.ThrowsAsync<ArgumentException>(async () =>
+            var logger = new NullLogger<Transaction>();
+            await Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                var trans = new Transaction(string.Empty, null);
+                var trans = new Transaction(string.Empty, logger);
             });
         }
 
         [Fact]
-        public void ShouldThrowIfBeginNotCalled()
+        public async Task ShouldThrowIfBeginNotCalled()
         {
-            var trans = new Transaction("connection", null);
+            var logger = new NullLogger<Transaction>();
 
-            Assert.ThrowsAsync<ArgumentException>(async () =>
+            var trans = new Transaction("connection", logger);
+
+            await Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await trans.Execute("", null);
+                await trans.ExecuteAsync("");
             });
         }
     }

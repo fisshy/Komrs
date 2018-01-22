@@ -1,0 +1,93 @@
+html {
+    background-color: #56baed;
+    height: 100%;
+    width:100%;
+  }
+  
+  body {
+    font-family: "Poppins", sans-serif;
+    height: 100%;
+    width:100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  a {
+    color: #6192bd;
+    display:inline-block;
+    text-decoration: none;
+    font-weight: 400;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display:inline-block;
+    margin: 40px 8px 10px 8px; 
+    color: #cccccc;
+  }
+
+  h2.inactive {
+    color: #cccccc;
+  }
+  
+  h2.active {
+    color: #0d0d0d;
+    border-bottom: 2px solid #5fbae9;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 1200px;
+    z-index: 1;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .portal-wrapper {
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    background: #fff;
+    padding: 30px;
+    width:100%;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  .portal {
+    width:80%;
+    float:left;
+    background: #fff;
+    padding: 30px;
+    box-sizing: border-box;
+    min-height: 100%;
+  }
+
+  .menu {
+    width:20%;
+    float:left;
+    background: #fff;
+    border-right: 1px solid #c1c1c1;
+    box-sizing: border-box;
+    min-height: 100%;
+  }
+
+  .menu a {
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid #c1c1c1;
+  }
+
+  .menu a:first-child {
+    margin-top: 30px;
+    border-top: 1px solid #c1c1c1;
+  }

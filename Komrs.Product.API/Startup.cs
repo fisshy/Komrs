@@ -178,6 +178,8 @@ namespace Komrs.Product.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("CorsPolicy");
+
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.

@@ -19,7 +19,7 @@ namespace Database
         public Transaction(string connectionString, ILogger logger)
         {
             _connectionString = !string.IsNullOrWhiteSpace(connectionString) ? connectionString : throw new ArgumentNullException("Connection not provided");
-            _logger = logger;
+            _logger = logger ?? throw new ArgumentNullException("Logger not provided");
         }
 
         public void Begin()
@@ -43,7 +43,7 @@ namespace Database
             }
             catch (Exception e)
             {
-                _logger.LogCritical(e, "Failed to Execute", query, param);
+                _logger.LogCritical(e, "Failed to Query<T>", query, param);
                 throw;
             }
         }
@@ -61,25 +61,25 @@ namespace Database
             }
             catch (Exception e)
             {
-                _logger.LogCritical(e, "Failed to Execute", query, param);
+                _logger.LogCritical(e, "Failed to QueryFirstAsync<T>", query, param);
                 throw;
             }
         }
 
-        public async Task<int> ExecuteAsync<T>(string query, object param = null)
+        public async Task<int> ExecuteAsync(string query, object param = null)
         {
             try
             {
                 if (_trans == null || _con == null)
                 {
-                    throw new ArgumentException("Transaction is not started, call Begin() to start");
+                    throw new ArgumentNullException("Transaction is not started, call Begin() to start");
                 }
 
                 return await _con.ExecuteAsync(query, param, _trans);
             }
             catch (Exception e)
             {
-                _logger.LogCritical(e, "Failed to Execute", query, param);
+                _logger.LogCritical(e, "Failed to ExecuteAsync<T>", query, param);
                 throw;
             }
         }

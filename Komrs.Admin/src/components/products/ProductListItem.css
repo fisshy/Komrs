@@ -1,0 +1,16 @@
+.product {
+    display: flex;
+    border-bottom: 1px solid #c1c1c1;
+}
+
+.product div {
+    padding:5px;
+}
+
+.product .articleNumber {
+    flex: 1;
+}
+
+.product .name {
+    flex:1;
+}

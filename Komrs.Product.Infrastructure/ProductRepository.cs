@@ -92,7 +92,7 @@ namespace Komrs.Product.Infrastructure
                         var tagId = tag.Id ??
                             await trans.QueryFirstAsync<int>("INSERT INTO dbo.Tag(Name) VALUES (@Name) SELECT SCOPE_IDENTITY()", tag);
 
-                        await trans.ExecuteAsync<int>("INSERT INTO dbo.ProductTag(ProductId, TagId) VALUES (@ProductId, @TagId)",
+                        await trans.ExecuteAsync("INSERT INTO dbo.ProductTag(ProductId, TagId) VALUES (@ProductId, @TagId)",
                             new { ProductId = productId, TagId = tagId });
                     }
 
@@ -101,7 +101,7 @@ namespace Komrs.Product.Infrastructure
                         var metaId = meta.Id ??
                             await trans.QueryFirstAsync<int>("INSERT INTO dbo.Meta(Name) VALUES (@Name) SELECT SCOPE_IDENTITY()", meta);
 
-                        await trans.ExecuteAsync<int>("INSERT INTO dbo.ProductMeta(ProductId, MetaId, Value) VALUES (@ProductId, @MetaId, @Value)",
+                        await trans.ExecuteAsync("INSERT INTO dbo.ProductMeta(ProductId, MetaId, Value) VALUES (@ProductId, @MetaId, @Value)",
                             new { MetaId = metaId, ProductId = productId, Value = meta.Value });
                     }
 
