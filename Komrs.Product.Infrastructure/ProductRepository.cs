@@ -115,6 +115,18 @@ namespace Komrs.Product.Infrastructure
             }
         }
 
+        public async Task<int> CreateSupplier(CreateSupplier supplier)
+        {
+            return await QueryFirstAsync<int>(
+                @"IF NOT EXISTS ( SELECT TOP 1 1 FROM dbo.Supplier WITH(NOLOCK) WHERE Name = @Name)
+                BEGIN
+                    INSERT INTO dbo.Supplier(Name) VALUES (@Name) SELECT SCOPE_IDENTITY()
+                    RETURN
+                END 
+                SELECT TOP 1 Id FROM dbo.Supplier WITH(NOLOCK) WHERE Name = @Name", 
+                new { Name = supplier.Name });
+        }
+
         public Task UpdateProduct(Models.Product product)
         {
             throw new NotImplementedException();

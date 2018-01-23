@@ -35,6 +35,23 @@ namespace Database
             }
         }
 
+        public async Task<T> QueryFirstAsync<T>(string query, object param = null)
+        {
+            try
+            {
+                using (var con = new SqlConnection(_connectionString))
+                {
+                    await con.OpenAsync();
+                    return await con.QueryFirstAsync<T>(query, param);
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogCritical(e, "Failed to QueryFirstAsync<T>", query, param);
+                throw;
+            }
+        }
+
         public async Task<int> Execute(string query, object param = null)
         {
             try

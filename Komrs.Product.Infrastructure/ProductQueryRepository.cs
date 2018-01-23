@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Komrs.Product.Models;
-using Dapper;
 using Microsoft.Extensions.Logging;
-using System.Data.SqlClient;
 using Database;
 
 namespace Komrs.Product.Infrastructure
 {
     public class ProductQueryRepository : DbContext, IProductQueryRepository
     { 
-        private readonly string connectionString;
-        private readonly ILogger logger;
 
         public ProductQueryRepository(string connectionString, ILogger<ProductQueryRepository> logger) : base(connectionString, logger)
         {
@@ -24,9 +19,14 @@ namespace Komrs.Product.Infrastructure
             return await Query<Category>("SELECT Id, Name, Order, ParentId FROM dbo.Category with(nolock)");
         }
 
-        public async Task<IEnumerable<Models.ProductListItem>> GetAllProducts()
+        public async Task<IEnumerable<ProductListItem>> GetAllProducts()
         {
             return await Query<ProductListItem>("SELECT * FROM dbo.GetAllProductListItems()");
+        }
+
+        public async Task<IEnumerable<Supplier>> GetAllSuppliers()
+        {
+            return await Query<Supplier>("SELECT Id, Name FROM dbo.Supplier WITH(NOLOCK)");
         }
 
         public Task<Models.Product> GetProduct(int productId)
@@ -34,7 +34,7 @@ namespace Komrs.Product.Infrastructure
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Models.ProductListItem>> GetProductsInCategory(int categoryId)
+        public async Task<IEnumerable<ProductListItem>> GetProductsInCategory(int categoryId)
         {
             return await Query<ProductListItem>("SELECT * FROM dbo.GetFilteredProductListItems(@categoryId)", new { categoryId  });
         }

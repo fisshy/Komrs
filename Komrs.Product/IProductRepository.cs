@@ -10,6 +10,7 @@ namespace Komrs.Product
         Task CreateProduct(Models.CreateProduct product);
         Task UpdateProduct(Models.Product product);
         Task UpdateStock(Models.Stock stock);
+        Task<int> CreateSupplier(Models.CreateSupplier supplier);
     }
 
     public interface IProductQueryRepository
@@ -18,5 +19,6 @@ namespace Komrs.Product
         Task<IEnumerable<Models.ProductListItem>> GetAllProducts();
         Task<IEnumerable<Models.ProductListItem>> GetProductsInCategory(int categoryId);
         Task<IEnumerable<Models.Category>> GetAllCategories();
+        Task<IEnumerable<Models.Supplier>> GetAllSuppliers();
     }
 }
